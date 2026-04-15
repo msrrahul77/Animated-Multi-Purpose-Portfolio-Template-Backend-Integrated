@@ -1,0 +1,27 @@
+[
+    {
+        "title": "Web Development Service",
+        "imgLink": "https://example.com/images/web-dev.jpg",
+        "des": "Professional web development services using modern technologies."
+    },
+    {
+        "title": "Graphic Design",
+        "imgLink": "https://example.com/images/graphic-design.jpg",
+        "des": "Creative and unique graphic design solutions for your brand."
+    },
+    {
+        "title": "Digital Marketing",
+        "imgLink": "https://example.com/images/digital-marketing.jpg",
+        "des": "Boost your business with SEO, social media, and online marketing."
+    },
+    {
+        "title": "Mobile App Development",
+        "imgLink": "https://example.com/images/mobile-app.jpg",
+        "des": "Cross-platform mobile applications for Android and iOS."
+    },
+    {
+        "title": "UI/UX Design",
+        "imgLink": "https://example.com/images/ui-ux.jpg",
+        "des": "User-centered design for better engagement and usability."
+    }
+]
