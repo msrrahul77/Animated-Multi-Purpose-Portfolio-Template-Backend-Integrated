@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import SectionTitle from '../components/SectionTitle';
-import { serviesData } from '../../public/data/servicesData';
+// import { serviesData } from '../../public/data/servicesData';
 import ServiceCard from '../components/servicesComp/serviceCard';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -9,6 +9,17 @@ import { useGSAP } from '@gsap/react';
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const Services = () => {
+
+    const [services, setServices] = useState([])
+  useEffect(() => {
+    fetch("http://localhost:8000/services")
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            setServices(data.data)
+        })
+        .catch(error => console.log(error));
+}, []);
     const cardContainer = useRef(null);
     const sectionRef = useRef(null);
 
@@ -17,14 +28,14 @@ const Services = () => {
         let mm = gsap.matchMedia();
 
         mm.add({
-            
+
             isDesktop: "(min-width: 768px)",
             isMobile: "(max-width: 767px)"
         }, (context) => {
             let { isDesktop } = context.conditions;
 
             if (isDesktop) {
-                
+
                 gsap.from(cards, {
                     y: 60,
                     opacity: 0,
@@ -37,7 +48,7 @@ const Services = () => {
                     }
                 });
             } else {
-               
+
                 cards.forEach((card) => {
                     gsap.from(card, {
                         y: 40,
@@ -47,7 +58,7 @@ const Services = () => {
                         scrollTrigger: {
                             trigger: card,
                             start: 'clamp(top 90%)',
-                            
+
                         }
                     });
                 });
@@ -61,7 +72,7 @@ const Services = () => {
             <SectionTitle title={'OUR SERVICES'} des={`Expertly crafted solutions for your digital needs.`} />
 
             <div ref={cardContainer} className='py-25 grid grid-cols-1 md:grid-cols-3 gap-x-13 text-white gap-y-12 md:gap-y-22.5'>
-                {serviesData.map(item => (
+                {services.map(item => (
                     <div key={item.id} className="serviceCard">
                         <ServiceCard data={item} />
                     </div>
